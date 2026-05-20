@@ -54,9 +54,21 @@ class AnswerResult:
 # Provider loader (lazy)
 # ---------------------------------------------------------------------------
 
-def load_provider(model: str = DEFAULT_MODEL):
-    """Build the OpenAI-compatible chat provider. Returns None if no API key."""
+def load_provider(model: Optional[str] = None):
+    """Build the OpenAI-compatible chat provider. Returns None if no API key.
+
+    Resolves the model name AFTER loading .env so a model set only in the .env
+    file (not exported as a shell var) is honored. The module-level DEFAULT_MODEL
+    is read at import time — before .env is loaded — so we must re-read here.
+    """
     from .llm_provider import build_provider
+    if model is None:
+        try:
+            from dotenv import load_dotenv
+            load_dotenv()
+        except ImportError:
+            pass
+        model = os.getenv("MODES_LLM_MODEL", "qwen2.5:3b-instruct")
     return build_provider(model=model)
 
 
