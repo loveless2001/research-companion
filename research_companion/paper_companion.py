@@ -150,7 +150,7 @@ class RetrievalConfig:
 
 
 def stable_paper_id(path: Path) -> str:
-    digest = hashlib.blake2b(str(path.resolve()).encode("utf-8"), digest_size=5).hexdigest()
+    digest = hashlib.blake2b(path.name.lower().encode("utf-8"), digest_size=5).hexdigest()
     stem = re.sub(r"[^a-z0-9]+", "-", path.stem.lower()).strip("-")[:40]
     return f"{stem or 'paper'}-{digest}"
 

@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from research_companion.paper_companion import (
     PageBlock,
     citation_for_chunk,
@@ -6,6 +8,7 @@ from research_companion.paper_companion import (
     iter_corpus_files,
     looks_like_heading,
     quote_snippet,
+    stable_paper_id,
 )
 
 
@@ -54,3 +57,10 @@ def test_corpus_discovery_ignores_readme_notes(tmp_path):
     paper.write_text("Abstract\n\nReal corpus text.", encoding="utf-8")
 
     assert iter_corpus_files(tmp_path) == [paper]
+
+
+def test_stable_paper_id_ignores_parent_directory():
+    left = stable_paper_id(Path("/tmp/one/2403.04807-math-neural-networks.pdf"))
+    right = stable_paper_id(Path("/tmp/two/2403.04807-math-neural-networks.pdf"))
+
+    assert left == right
