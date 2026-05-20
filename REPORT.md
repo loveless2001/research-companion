@@ -50,6 +50,10 @@ mean_token_usage_est: 524.5
 
 gpt-4o follows the citation + compare-format rules perfectly (100% citation coverage, 100% compare-bucket cite%) where the small Qwen2.5:3b had to trade compare-mode formatting (57.1%) for refusal compliance under tightened prompts. The one gpt-4o weakness is the ambiguous bucket (40% cite, 0% refused): it asks clarifying questions for 2 of 5 vague prompts, but answers the other 3 with grounded context instead of consistently following the prompt rule to ask for clarification. Latency is comparable to Qwen and dominated by the compare bucket (multi-paper context, ~14.5 s mean).
 
+### Pipeline attribution baseline
+
+A current no-LLM run (`--no-llm --output-tag pipeline-only`) isolates the retrieval/chunking/filtering/gating pipeline from backend generation. It gets the same retrieval scores as gpt-4o because those metrics are upstream of the LLM: top1 88.0, topk 100.0, citation coverage 100.0, correctly_refused 60.0, mean latency 12.19 ms. This means the headline retrieval/citation metrics mostly measure pipeline quality, while backend LLM contribution should be judged from answer synthesis quality, compare-section coherence, and ambiguous-query behavior. Results: `results/eval_runs-pipeline-only.jsonl`, `results/metrics-pipeline-only.csv`.
+
 > **Methodology note.** An earlier final eval used `gemini-2.5-flash-lite`, but on the Gemini **free tier** (20 requests/day) 25 of 50 calls hit a 429 quota error and silently fell back to extractive (non-LLM) answers, so those metrics were invalid and the run was discarded. The eval was re-run on `gpt-4o` (paid tier, no daily cap) — 45 LLM answers + 5 correct refusals, **0 fallbacks**. Results: `results/eval_runs-v3-gpt4o.jsonl`, `results/metrics-v3-gpt4o.csv`.
 >
 > † The Qwen2.5:3b columns are from the prior eval set (before `paper_id`s were made path-independent and `eval_questions.json` was regenerated). Bucket-driven answer-quality metrics (citation %, refusal %) remain comparable; retrieval-hit numbers are not strictly apples-to-apples across the two eval-set versions.

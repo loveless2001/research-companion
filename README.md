@@ -153,7 +153,7 @@ retrieval_top1_hit_pct: 88.0   correctly_refused_pct: 70.0
 mean_latency_ms: 3881          p95_latency_ms: 14877
 ```
 
-45 LLM answers + 5 correct refusals, 0 fallbacks. Snapshots in `results/` for comparison: `metrics-v1-llm.csv` (Qwen loose), `metrics-v2-qwen.csv` (Qwen tight), `metrics-v3-gpt4o.csv` (current). See `REPORT.md` §2 for the model comparison and the methodology note on the discarded Gemini free-tier run.
+45 LLM answers + 5 correct refusals, 0 fallbacks. Snapshots in `results/` for comparison: `metrics-v1-llm.csv` (Qwen loose), `metrics-v2-qwen.csv` (Qwen tight), `metrics-pipeline-only.csv` (no-LLM pipeline attribution), and `metrics-v3-gpt4o.csv` (current). See `REPORT.md` §2 for the model comparison, pipeline-only baseline, and methodology note on the discarded Gemini free-tier run.
 
 ---
 
