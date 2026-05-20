@@ -19,8 +19,8 @@ from research_companion import (
 )
 from research_companion.paper_companion import RetrievalConfig
 
-ROOT = Path(__file__).resolve().parents[2]
-CORPUS = ROOT / "research_companion" / "corpus"
+ROOT = Path(__file__).resolve().parents[1]
+CORPUS = ROOT / "corpus"
 
 
 @pytest.fixture(scope="module")

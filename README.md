@@ -15,9 +15,9 @@ See `REPORT.md` for full metrics and `architecture.md` for the pipeline diagram.
 ## Install
 
 ```bash
-cd research_companion
+cd research-companion
 python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
+pip install -e ".[test]"
 ```
 
 Configure the LLM provider in `.env` (one block active at a time):
@@ -39,7 +39,7 @@ MODES_LLM_MODEL=gemini-2.5-flash-lite
 # MODES_LLM_MODEL=Qwen3-32B
 ```
 
-If `OPENAI_API_KEY` is unset, the modes silently fall back to an extractive answer (top-2 chunks formatted as citations).
+If `OPENAI_API_KEY` is unset, the modes fall back to an extractive answer (top-2 chunks formatted as citations). If an LLM call fails, the app logs the API error before falling back.
 
 ---
 
@@ -59,10 +59,10 @@ jupyter notebook notebook.ipynb
 ### Data-layer CLI
 ```bash
 # Inspect corpus
-python paper_companion.py inspect --corpus-dir corpus
+python research_companion/paper_companion.py inspect --corpus-dir corpus
 
 # Retrieval smoke test
-python paper_companion.py smoke --corpus-dir corpus \
+python research_companion/paper_companion.py smoke --corpus-dir corpus \
   --query "What is Xavier initialization?" --top-k 5
 ```
 
@@ -155,20 +155,22 @@ Three model runs are snapshotted in `results/` for comparison: `metrics-v1-llm.c
 ## Project layout
 
 ```
-research_companion/
-├── paper_companion.py            data layer (PDF → chunks → FAISS)
-├── retrieval_primitives.py       Embedder + VectorIndex + chunk splitter
-├── modes.py                      ask / summarize_section / compare_papers
-├── llm_provider.py               OpenAI-compat client
+research-companion/
+├── research_companion/           importable Python package
+│   ├── paper_companion.py        data layer (PDF → chunks → FAISS)
+│   ├── retrieval_primitives.py   Embedder + VectorIndex + chunk splitter
+│   ├── modes.py                  ask / summarize_section / compare_papers
+│   └── llm_provider.py           OpenAI-compat client
 ├── app.py                        Gradio 4-tab UI
 ├── corpus/                       5 PDFs
 ├── results/                      eval_questions.json + metrics + run snapshots
 ├── scripts/                      eval-set author + harness CLIs
 ├── tests/                        pytest suite (11 tests)
+├── pyproject.toml                editable install metadata
 ├── requirements.txt
 ├── REPORT.md                     full results + honest gaps
 ├── architecture.md               pipeline diagram + module map
 └── notebook.ipynb                demo walkthrough
 ```
 
-No dependency on any parent repo — `research_companion/` is the project root.
+No dependency on any parent repo — the GitHub checkout is the project root.

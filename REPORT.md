@@ -94,16 +94,18 @@ Two layers:
 ## 6. Standalone footprint
 
 ```
-research_companion/                  ~1860 LOC total
-├── paper_companion.py     ~640      data layer: ingest, chunk, FAISS, snippets
-├── retrieval_primitives.py ~140     vendored Embedder/VectorIndex/splitter
-├── modes.py               ~265      ask / summarize_section / compare_papers
-├── llm_provider.py        ~80       OpenAI-compat client (any provider)
-├── app.py                 ~190      Gradio 4-tab UI
+research-companion/                   ~1860 LOC total
+├── research_companion/               importable package
+│   ├── paper_companion.py  ~640      data layer: ingest, chunk, FAISS, snippets
+│   ├── retrieval_primitives.py ~140  vendored Embedder/VectorIndex/splitter
+│   ├── modes.py            ~265      ask / summarize_section / compare_papers
+│   └── llm_provider.py     ~80       OpenAI-compat client (any provider)
+├── app.py                  ~190      Gradio 4-tab UI
 ├── corpus/                          5 PDFs (committed)
 ├── results/                         eval_questions.json + v1/v2/v3 snapshots
 ├── scripts/                         eval author + harness CLIs
 ├── tests/                           pytest suite (11 tests)
+├── pyproject.toml                    editable install metadata
 ├── requirements.txt
 ├── README.md
 ├── REPORT.md  (this file)
@@ -119,8 +121,8 @@ modules and app provider returns zero matches in the Python source.
 ## 7. Reproducing the eval
 
 ```bash
-cd research_companion
-pip install -r requirements.txt
+cd research-companion
+pip install -e ".[test]"
 
 # Set provider (Gemini, Ollama, or FPT — see .env for blocks)
 export OPENAI_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai/

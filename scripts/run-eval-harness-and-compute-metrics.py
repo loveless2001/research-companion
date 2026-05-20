@@ -17,9 +17,9 @@ Outputs:
 - results/metrics_by_bucket.csv (one row per bucket)
 
 Usage:
-    ./.venv/bin/python research_companion/scripts/run-eval-harness-and-compute-metrics.py
-    ./.venv/bin/python research_companion/scripts/run-eval-harness-and-compute-metrics.py --no-llm
-    ./.venv/bin/python research_companion/scripts/run-eval-harness-and-compute-metrics.py --no-llm --limit 5
+    ./.venv/bin/python scripts/run-eval-harness-and-compute-metrics.py
+    ./.venv/bin/python scripts/run-eval-harness-and-compute-metrics.py --no-llm
+    ./.venv/bin/python scripts/run-eval-harness-and-compute-metrics.py --no-llm --limit 5
 """
 
 from __future__ import annotations
@@ -35,8 +35,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-PARENT = PROJECT_ROOT.parent
-sys.path.insert(0, str(PARENT))
+sys.path.insert(0, str(PROJECT_ROOT))
 
 from research_companion import (  # noqa: E402
     ask,

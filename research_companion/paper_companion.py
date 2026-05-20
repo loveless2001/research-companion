@@ -35,7 +35,7 @@ except ImportError:  # pragma: no cover - direct `python paper_companion.py`
     )
 
 
-PROJECT_ROOT = Path(__file__).resolve().parent
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CORPUS_DIR = PROJECT_ROOT / "corpus"
 DEFAULT_RESULTS_DIR = PROJECT_ROOT / "results"
 MAX_QUOTE_WORDS = 20

@@ -4,7 +4,7 @@
 Strategy: candidate questions are drafted by topic (matched to the seed paper's
 sections). For each grounded question we run a retrieval pass, capture the
 top-1 (section, page) as the proposed ground truth, and flag mismatches for
-manual review. Output: research_companion/results/eval_questions.json.
+manual review. Output: results/eval_questions.json.
 """
 
 from __future__ import annotations
@@ -14,8 +14,7 @@ import sys
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-PARENT = PROJECT_ROOT.parent
-sys.path.insert(0, str(PARENT))
+sys.path.insert(0, str(PROJECT_ROOT))
 
 from research_companion.paper_companion import (
     RetrievalConfig,

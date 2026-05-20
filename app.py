@@ -7,8 +7,8 @@ Four tabs:
     4. Compare   : structured method/results/limitations comparison of two papers
 
 Launch:
-    ./.venv/bin/python research_companion/app.py
-    ./.venv/bin/python research_companion/app.py --host 0.0.0.0 --port 7860
+    ./.venv/bin/python app.py
+    ./.venv/bin/python app.py --host 0.0.0.0 --port 7860
 """
 
 from __future__ import annotations
@@ -22,9 +22,8 @@ from typing import Any, Dict, List, Optional
 import gradio as gr
 
 PROJECT_ROOT = Path(__file__).resolve().parent
-PARENT = PROJECT_ROOT.parent
-if str(PARENT) not in sys.path:
-    sys.path.insert(0, str(PARENT))
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 from research_companion import (  # noqa: E402
     AnswerResult,
