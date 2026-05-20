@@ -2,7 +2,7 @@
 
 **Project**: QuanSkill K6 Final Projects — Project 2 (Research Paper Companion)
 **Stack**: PyMuPDF + sentence-transformers/all-MiniLM-L6-v2 + FAISS (cosine) + OpenAI-compat LLM
-**LLM (final eval)**: `gemini-2.5-flash-lite` via Gemini OpenAI-compat endpoint
+**LLM (final eval)**: `gpt-4o` via the OpenAI API (any OpenAI-compatible endpoint works)
 **Corpus**: 5 papers (4 RAG-area arXiv + 1 math-of-NN seed), 4,359 chunks
 
 ---
@@ -16,39 +16,43 @@
 | Section summarization mode | 15 | ✅ `summarize_section(paper_id, section)` retrieves all chunks for the section and produces a 4–6-sentence cited summary |
 | Compare-two-papers feature | 15 | ✅ `compare_papers(a, b, query)` retrieves per-side, produces structured Method/Results/Limitations markdown with per-side citations |
 | Evaluation + metrics saved | 10 | ✅ 50-question hand-authored eval set with retrieval-validated `(section, page)` GT; 6 buckets; full per-question JSONL + summary CSV + per-bucket CSV |
-| UX + clarity + reproducibility | 10 | ✅ Gradio 4-tab app (Corpus / Chat / Summary / Compare); HTTP 200 verified; tests 11/11 pass; standalone install via `requirements.txt` |
+| UX + clarity + reproducibility | 10 | ✅ Gradio 4-tab app (Corpus / Chat / Summary / Compare); HTTP 200 verified; tests 12/12 pass; standalone install via `pip install -e ".[test]"` |
 
 ---
 
-## 2. Headline metrics (final eval — Gemini 2.5 Flash Lite)
+## 2. Headline metrics (final eval — gpt-4o)
 
 ```
 total_questions: 50            skipped: 0
-citation_coverage_pct: 97.5    retrieval_top1_hit_pct: 88.0
-retrieval_topk_hit_pct: 100.0  correctly_refused_pct: 60.0
-mean_latency_ms: 2126.98       p95_latency_ms: 5137.37
-mean_token_usage_est: 494.8
+citation_coverage_pct: 100.0   retrieval_top1_hit_pct: 88.0
+retrieval_topk_hit_pct: 100.0  correctly_refused_pct: 70.0
+mean_latency_ms: 3880.76       p95_latency_ms: 14876.54
+mean_token_usage_est: 524.5
 ```
 
 ### Per-bucket
 | bucket | n | cite% | refused% | mean ms |
 |---|---|---|---|---|
-| factual | 15 | 93.3 | 0 | 2406 |
-| where_stated | 10 | 100.0 | 0 | 1589 |
-| section_summary | 8 | 100.0 | 0 | 2922 |
-| compare | 7 | 100.0 | 0 | 3245 |
-| ambiguous | 5 | 100.0 | 0 | 1637 |
-| out_of_scope | 5 | n/a | 100 (gate) | 18 |
+| factual | 15 | 100.0 | 0 | 2424 |
+| where_stated | 10 | 100.0 | 0 | 1507 |
+| section_summary | 8 | 100.0 | 0 | 4016 |
+| compare | 7 | 100.0 | 0 | 14454 |
+| ambiguous | 5 | 40.0 | 0 | 1850 |
+| out_of_scope | 5 | n/a | 100 (gate) | 10 |
 
-### Model comparison (50 questions, identical prompts & eval set)
-| metric | Qwen2.5:3b loose | Qwen2.5:3b tight | **Gemini 2.5 Flash Lite** |
+### Model comparison
+| metric | Qwen2.5:3b loose † | Qwen2.5:3b tight † | **gpt-4o** |
 |---|---|---|---|
-| citation_coverage_pct | 95.0 | 90.0 | **97.5** |
+| citation_coverage_pct | 95.0 | 90.0 | **100.0** |
 | compare-bucket cite% | 100.0 | 57.1 | **100.0** |
-| correctly_refused_pct | 50.0 | **80.0** | 60.0 |
-| mean_latency_ms | 3680 | 3678 | **2127** |
+| correctly_refused_pct | 50.0 | **80.0** | 70.0 |
+| mean_latency_ms | **3680** | **3678** | 3881 |
 
-Qwen2.5:3b under tightened prompts gained refusal compliance (+30pt) but lost compare-mode formatting (-43pt) — token-attention trade-off the smaller model couldn't avoid. Gemini 2.5 Flash Lite handles both rules together at lower latency.
+gpt-4o follows the citation + compare-format rules perfectly (100% citation coverage, 100% compare-bucket cite%) where the small Qwen2.5:3b had to trade compare-mode formatting (57.1%) for refusal compliance under tightened prompts. The one gpt-4o weakness is the ambiguous bucket (40% cite, 0% refused): its strong "be helpful" prior makes it answer vague queries with grounded context instead of asking the clarifying question the prompt rule requests — the same behavior class seen with other strong models. Latency is comparable to Qwen and dominated by the compare bucket (multi-paper context, ~14.5 s mean).
+
+> **Methodology note.** An earlier final eval used `gemini-2.5-flash-lite`, but on the Gemini **free tier** (20 requests/day) 25 of 50 calls hit a 429 quota error and silently fell back to extractive (non-LLM) answers, so those metrics were invalid and the run was discarded. The eval was re-run on `gpt-4o` (paid tier, no daily cap) — 45 LLM answers + 5 correct refusals, **0 fallbacks**. Results: `results/eval_runs-v3-gpt4o.jsonl`, `results/metrics-v3-gpt4o.csv`.
+>
+> † The Qwen2.5:3b columns are from the prior eval set (before `paper_id`s were made path-independent and `eval_questions.json` was regenerated). Bucket-driven answer-quality metrics (citation %, refusal %) remain comparable; retrieval-hit numbers are not strictly apples-to-apples across the two eval-set versions.
 
 ---
 
@@ -87,7 +91,7 @@ The eval harness counts a citation as "matched" when the chunk_id substring appe
 
 Two layers:
 - **Retrieval gate** (`min_score = 0.30` cosine): if top-1 score is below threshold, the router refuses *before* calling the LLM. Confirmed by the 100% OOS refusal at ~18 ms — the LLM was never invoked for stock-price/sports/recipe questions.
-- **LLM gate** (system prompt rule 4): for vague-but-on-topic queries, the LLM is instructed to ask a clarifying question. Gemini's stronger "be helpful" prior makes it fall back to grounded answers on ambiguous queries about 4 out of 5 times (refusal 60% headline vs Qwen2.5:3b's 80% under the same rule).
+- **LLM gate** (system prompt rule 4): for vague-but-on-topic queries, the LLM is instructed to ask a clarifying question. gpt-4o's stronger "be helpful" prior makes it answer all 5 ambiguous queries with grounded context instead of asking for clarification (ambiguous-bucket refusal 0%, correctly_refused 70% headline vs Qwen2.5:3b's 80% under the same rule).
 
 ---
 
@@ -124,13 +128,13 @@ modules and app provider returns zero matches in the Python source.
 cd research-companion
 pip install -e ".[test]"
 
-# Set provider (Gemini, Ollama, or FPT — see .env for blocks)
-export OPENAI_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai/
-export OPENAI_API_KEY=<your gemini key>
-export MODES_LLM_MODEL=gemini-2.5-flash-lite
+# Set provider (OpenAI default; Gemini/Ollama/FPT also work — see .env for blocks)
+export OPENAI_BASE_URL=https://api.openai.com/v1
+export OPENAI_API_KEY=<your openai key>
+export MODES_LLM_MODEL=gpt-4o
 
-# Full eval (~3 min on Gemini)
-python scripts/run-eval-harness-and-compute-metrics.py
+# Full eval (~3 min)
+python scripts/run-eval-harness-and-compute-metrics.py --model gpt-4o --output-tag v3-gpt4o
 
 # Quick smoke (5 questions, writes results/*-limit5.* so canonical metrics stay intact)
 python scripts/run-eval-harness-and-compute-metrics.py --limit 5
@@ -147,7 +151,7 @@ Full-run outputs: `results/metrics.csv`, `results/metrics_by_bucket.csv`,
 
 ## 8. Honest gaps / known limitations
 
-1. **Ambiguous-refusal compliance** drops with stronger models — Gemini answers vague queries 4/5 times instead of asking for clarification. The rule is in the system prompt but a stronger model's "be helpful" prior overrides it. Fix would require stricter output format constraints or a separate classifier.
+1. **Ambiguous-refusal compliance** drops with stronger models — gpt-4o answers all 5 vague queries instead of asking for clarification. The rule is in the system prompt but a stronger model's "be helpful" prior overrides it. Fix would require stricter output format constraints or a separate classifier.
 2. **Retrieval top-1 hit = 88%** — three eval prompts retrieve the "expected" topic but from a different section than the human-authored expectation (e.g., backprop mentioned in `introduction` before its dedicated section). Not broken retrieval, but worth flagging.
 3. **Compare-mode under small LLMs** — Qwen2.5:3b dropped citation tags when forced to also produce structural headings. Anything <7B is unreliable here without further prompt engineering.
 4. **Vendored provider wrapper** — implemented as `llm_provider.py`. If the

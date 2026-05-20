@@ -23,10 +23,15 @@ pip install -e ".[test]"
 Configure the LLM provider in `.env` (one block active at a time):
 
 ```bash
-# --- Google Gemini (free tier; current default) ---
-OPENAI_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai/
-OPENAI_API_KEY=<your gemini key>
-MODES_LLM_MODEL=gemini-2.5-flash-lite
+# --- OpenAI (current default; used for the final eval) ---
+OPENAI_BASE_URL=https://api.openai.com/v1
+OPENAI_API_KEY=<your openai key>
+MODES_LLM_MODEL=gpt-4o
+
+# --- Google Gemini (works, but free tier caps at 20 requests/day — a 50-question eval will hit 429) ---
+# OPENAI_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai/
+# OPENAI_API_KEY=<your gemini key>
+# MODES_LLM_MODEL=gemini-2.5-flash-lite
 
 # --- Local Ollama ---
 # OPENAI_BASE_URL=http://localhost:11434/v1
@@ -68,8 +73,8 @@ python research_companion/paper_companion.py smoke --corpus-dir corpus \
 
 ### Eval harness
 ```bash
-# Full 50-question eval (~3 min on Gemini)
-python scripts/run-eval-harness-and-compute-metrics.py
+# Full 50-question eval (~3 min)
+python scripts/run-eval-harness-and-compute-metrics.py --model gpt-4o --output-tag v3-gpt4o
 
 # Quick 5-question smoke (~30 s, writes *-limit5 files)
 python scripts/run-eval-harness-and-compute-metrics.py --limit 5
@@ -140,15 +145,15 @@ Drop new PDFs into `corpus/` and restart the app — they're auto-discovered by 
 
 ---
 
-## Final eval (Gemini 2.5 Flash Lite, 50 questions)
+## Final eval (gpt-4o, 50 questions)
 
 ```
-citation_coverage_pct: 97.5    retrieval_topk_hit_pct: 100.0
-retrieval_top1_hit_pct: 88.0   correctly_refused_pct: 60.0
-mean_latency_ms: 2127          p95_latency_ms: 5137
+citation_coverage_pct: 100.0   retrieval_topk_hit_pct: 100.0
+retrieval_top1_hit_pct: 88.0   correctly_refused_pct: 70.0
+mean_latency_ms: 3881          p95_latency_ms: 14877
 ```
 
-Three model runs are snapshotted in `results/` for comparison: `metrics-v1-llm.csv` (Qwen loose), `metrics-v2-qwen.csv` (Qwen tight), `metrics-v3-gemini.csv` (current). See `REPORT.md` §2.
+45 LLM answers + 5 correct refusals, 0 fallbacks. Snapshots in `results/` for comparison: `metrics-v1-llm.csv` (Qwen loose), `metrics-v2-qwen.csv` (Qwen tight), `metrics-v3-gpt4o.csv` (current). See `REPORT.md` §2 for the model comparison and the methodology note on the discarded Gemini free-tier run.
 
 ---
 
