@@ -15,12 +15,15 @@ are returned, the router refuses instead of letting the LLM hallucinate.
 
 from __future__ import annotations
 
+import logging
 import os
 import time
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional, Sequence
 
 from .paper_companion import PaperIndex, extractive_answer
+
+logger = logging.getLogger(__name__)
 
 DEFAULT_MODEL = os.getenv("MODES_LLM_MODEL", "qwen2.5:3b-instruct")
 DEFAULT_MIN_SCORE = 0.30  # below this top-1 score, refuse instead of generate
@@ -266,5 +269,12 @@ def _generate_or_fallback(provider: Any, system: str, user: str, query: str, rec
             {"role": "system", "content": system},
             {"role": "user", "content": user},
         ])
-    except Exception:
+    except Exception as exc:
+        # Loud fallback: a swallowed API error here (e.g. a 404 on a misconfigured
+        # model name) used to masquerade as a low-quality "extractive" answer.
+        # Log it with full traceback so the real cause is visible in the app log.
+        logger.error(
+            "LLM generation failed (model=%s); falling back to extractive answer: %s",
+            getattr(provider, "_model", "?"), exc, exc_info=True,
+        )
         return extractive_answer(query, records)
