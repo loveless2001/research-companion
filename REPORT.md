@@ -48,7 +48,7 @@ mean_token_usage_est: 524.5
 | correctly_refused_pct | 50.0 | **80.0** | 70.0 |
 | mean_latency_ms | **3680** | **3678** | 3881 |
 
-gpt-4o follows the citation + compare-format rules perfectly (100% citation coverage, 100% compare-bucket cite%) where the small Qwen2.5:3b had to trade compare-mode formatting (57.1%) for refusal compliance under tightened prompts. The one gpt-4o weakness is the ambiguous bucket (40% cite, 0% refused): its strong "be helpful" prior makes it answer vague queries with grounded context instead of asking the clarifying question the prompt rule requests — the same behavior class seen with other strong models. Latency is comparable to Qwen and dominated by the compare bucket (multi-paper context, ~14.5 s mean).
+gpt-4o follows the citation + compare-format rules perfectly (100% citation coverage, 100% compare-bucket cite%) where the small Qwen2.5:3b had to trade compare-mode formatting (57.1%) for refusal compliance under tightened prompts. The one gpt-4o weakness is the ambiguous bucket (40% cite, 0% refused): it asks clarifying questions for 2 of 5 vague prompts, but answers the other 3 with grounded context instead of consistently following the prompt rule to ask for clarification. Latency is comparable to Qwen and dominated by the compare bucket (multi-paper context, ~14.5 s mean).
 
 > **Methodology note.** An earlier final eval used `gemini-2.5-flash-lite`, but on the Gemini **free tier** (20 requests/day) 25 of 50 calls hit a 429 quota error and silently fell back to extractive (non-LLM) answers, so those metrics were invalid and the run was discarded. The eval was re-run on `gpt-4o` (paid tier, no daily cap) — 45 LLM answers + 5 correct refusals, **0 fallbacks**. Results: `results/eval_runs-v3-gpt4o.jsonl`, `results/metrics-v3-gpt4o.csv`.
 >
@@ -91,7 +91,7 @@ The eval harness counts a citation as "matched" when the chunk_id substring appe
 
 Two layers:
 - **Retrieval gate** (`min_score = 0.30` cosine): if top-1 score is below threshold, the router refuses *before* calling the LLM. Confirmed by the 100% OOS refusal at ~18 ms — the LLM was never invoked for stock-price/sports/recipe questions.
-- **LLM gate** (system prompt rule 4): for vague-but-on-topic queries, the LLM is instructed to ask a clarifying question. gpt-4o's stronger "be helpful" prior makes it answer all 5 ambiguous queries with grounded context instead of asking for clarification (ambiguous-bucket refusal 0%, correctly_refused 70% headline vs Qwen2.5:3b's 80% under the same rule).
+- **LLM gate** (system prompt rule 4): for vague-but-on-topic queries, the LLM is instructed to ask a clarifying question. gpt-4o asks for clarification on 2 of 5 ambiguous queries and answers the other 3 with grounded context, so ambiguous-bucket refusal is 0% and the headline correctly_refused score is 70% vs Qwen2.5:3b's 80% under the same rule.
 
 ---
 
@@ -151,7 +151,7 @@ Full-run outputs: `results/metrics.csv`, `results/metrics_by_bucket.csv`,
 
 ## 8. Honest gaps / known limitations
 
-1. **Ambiguous-refusal compliance** drops with stronger models — gpt-4o answers all 5 vague queries instead of asking for clarification. The rule is in the system prompt but a stronger model's "be helpful" prior overrides it. Fix would require stricter output format constraints or a separate classifier.
+1. **Ambiguous-refusal compliance** is incomplete — gpt-4o asks clarifying questions for 2 of 5 vague queries, but answers the other 3 instead of consistently following the clarification rule. Fix would require stricter output format constraints or a separate classifier.
 2. **Retrieval top-1 hit = 88%** — three eval prompts retrieve the "expected" topic but from a different section than the human-authored expectation (e.g., backprop mentioned in `introduction` before its dedicated section). Not broken retrieval, but worth flagging.
 3. **Compare-mode under small LLMs** — Qwen2.5:3b dropped citation tags when forced to also produce structural headings. Anything <7B is unreliable here without further prompt engineering.
 4. **Vendored provider wrapper** — implemented as `llm_provider.py`. If the
