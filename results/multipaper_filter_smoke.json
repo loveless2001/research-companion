@@ -1,0 +1,30 @@
+{
+  "paper_count": 5,
+  "chunk_count": 4359,
+  "checks": [
+    {
+      "filename": "2005.11401-rag.pdf",
+      "paper_id": "2005-11401-rag-36118b6fc7",
+      "query": "How does retrieval augmented generation combine retrieved documents with generation?",
+      "top_chunk_id": "2005-11401-rag-36118b6fc7:c00043",
+      "top_paper_id": "2005-11401-rag-36118b6fc7",
+      "top_section": "introduction",
+      "top_page": 2,
+      "top_quote": "We endow pre-trained, parametric-memory generation models with a non-parametric memory through a general-purpose \ufb01ne-tuning approach which we refer to as",
+      "all_results_within_filter": true
+    },
+    {
+      "filename": "2310.11511-self-rag.pdf",
+      "paper_id": "2310-11511-self-rag-83f91a8717",
+      "query": "How does the system decide when to retrieve evidence?",
+      "top_chunk_id": "2310-11511-self-rag-83f91a8717:c00353",
+      "top_paper_id": "2310-11511-self-rag-83f91a8717",
+      "top_section": "a_self_rag_details",
+      "top_page": 17,
+      "top_quote": "\u2022 Retrieval-on-demand ( Retrieve ): Given an input and previous-step generation (if applicable), an LM determines whether the continuation requires",
+      "all_results_within_filter": true
+    }
+  ],
+  "distinct_top_chunks": true,
+  "all_filters_respected": true
+}

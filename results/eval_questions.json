@@ -1,0 +1,657 @@
+{
+  "version": 2,
+  "seed_paper_id": "2403-04807-math-neural-networks-f32d05a721",
+  "all_paper_ids": [
+    "2005-11401-rag-36118b6fc7",
+    "2112-04426-retro-1d8844ff7b",
+    "2208-03299-atlas-e29ac64b1f",
+    "2310-11511-self-rag-83f91a8717",
+    "2403-04807-math-neural-networks-f32d05a721"
+  ],
+  "questions": [
+    {
+      "id": "f01",
+      "bucket": "factual",
+      "question": "What activation function is described as very similar to the sigmoid?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "artificial_neurons_activation_functions",
+        "page": 11,
+        "retrieval_top1_section": "artificial_neurons_activation_functions",
+        "retrieval_top1_page": 11,
+        "match": true
+      }
+    },
+    {
+      "id": "f02",
+      "bucket": "factual",
+      "question": "What property must a loss function have so that gradient descent is applicable?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "supervised_learning",
+        "page": null,
+        "retrieval_top1_section": "initialization",
+        "retrieval_top1_page": 28,
+        "match": false
+      }
+    },
+    {
+      "id": "f03",
+      "bucket": "factual",
+      "question": "What does SGD stand for and how does it differ from full gradient descent?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "stochastic_gradient_descent",
+        "page": 17,
+        "retrieval_top1_section": "stochastic_gradient_descent",
+        "retrieval_top1_page": 17,
+        "match": true
+      }
+    },
+    {
+      "id": "f04",
+      "bucket": "factual",
+      "question": "Why is initialization important for training deep neural networks?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "initialization",
+        "page": 25,
+        "retrieval_top1_section": "initialization",
+        "retrieval_top1_page": 25,
+        "match": true
+      }
+    },
+    {
+      "id": "f05",
+      "bucket": "factual",
+      "question": "What is the role of the convolution operation in a CNN?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "convolutional_neural_networks",
+        "page": 35,
+        "retrieval_top1_section": "convolutional_neural_networks",
+        "retrieval_top1_page": 35,
+        "match": true
+      }
+    },
+    {
+      "id": "f06",
+      "bucket": "factual",
+      "question": "What is automatic differentiation and how does it relate to backpropagation?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "automatic_differentiation_backpropagation",
+        "page": 38,
+        "retrieval_top1_section": "automatic_differentiation_backpropagation",
+        "retrieval_top1_page": 38,
+        "match": true
+      }
+    },
+    {
+      "id": "f07",
+      "bucket": "factual",
+      "question": "What is the Adam optimizer and what hyperparameters does it use?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "adaptive_learning_rate_algorithms",
+        "page": 45,
+        "retrieval_top1_section": "adaptive_learning_rate_algorithms",
+        "retrieval_top1_page": 45,
+        "match": true
+      }
+    },
+    {
+      "id": "f08",
+      "bucket": "factual",
+      "question": "What is the definition of a smooth manifold used in the paper?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "manifolds",
+        "page": 52,
+        "retrieval_top1_section": "manifolds",
+        "retrieval_top1_page": 52,
+        "match": true
+      }
+    },
+    {
+      "id": "f09",
+      "bucket": "factual",
+      "question": "What is a Lie group and give one example from the paper?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "lie_groups",
+        "page": 53,
+        "retrieval_top1_section": "lie_groups",
+        "retrieval_top1_page": 53,
+        "match": true
+      }
+    },
+    {
+      "id": "f10",
+      "bucket": "factual",
+      "question": "What is meant by a rotation-translation equivariant CNN?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "building_a_rotation_translation_equivariant_cnn",
+        "page": 65,
+        "retrieval_top1_section": "building_a_rotation_translation_equivariant_cnn",
+        "retrieval_top1_page": 65,
+        "match": true
+      }
+    },
+    {
+      "id": "f11",
+      "bucket": "factual",
+      "question": "What are tropical operators in the context of this paper?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "tropical_operators",
+        "page": 75,
+        "retrieval_top1_section": "tropical_operators",
+        "retrieval_top1_page": 75,
+        "match": true
+      }
+    },
+    {
+      "id": "f12",
+      "bucket": "factual",
+      "question": "What is a shallow neural network as defined in the paper?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "shallow_networks",
+        "page": 16,
+        "retrieval_top1_section": "shallow_networks",
+        "retrieval_top1_page": 16,
+        "match": true
+      }
+    },
+    {
+      "id": "f13",
+      "bucket": "factual",
+      "question": "What is the universal approximation property mentioned for shallow networks?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "shallow_networks",
+        "page": 16,
+        "retrieval_top1_section": "shallow_networks",
+        "retrieval_top1_page": 16,
+        "match": true
+      }
+    },
+    {
+      "id": "f14",
+      "bucket": "factual",
+      "question": "How is Xavier initialization defined?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "initialization",
+        "page": 29,
+        "retrieval_top1_section": "initialization",
+        "retrieval_top1_page": 29,
+        "match": true
+      }
+    },
+    {
+      "id": "f15",
+      "bucket": "factual",
+      "question": "What is the difference between a deep and a shallow network?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "deep_neural_networks",
+        "page": 20,
+        "retrieval_top1_section": "deep_neural_networks",
+        "retrieval_top1_page": 20,
+        "match": true
+      }
+    },
+    {
+      "id": "w16",
+      "bucket": "where_stated",
+      "question": "Where in the paper is the hyperbolic tangent activation function introduced?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "artificial_neurons_activation_functions",
+        "page": 12,
+        "retrieval_top1_section": "artificial_neurons_activation_functions",
+        "retrieval_top1_page": 12,
+        "match": true
+      }
+    },
+    {
+      "id": "w17",
+      "bucket": "where_stated",
+      "question": "Which section discusses adaptive learning rate methods like Adam?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "adaptive_learning_rate_algorithms",
+        "page": 44,
+        "retrieval_top1_section": "adaptive_learning_rate_algorithms",
+        "retrieval_top1_page": 44,
+        "match": true
+      }
+    },
+    {
+      "id": "w18",
+      "bucket": "where_stated",
+      "question": "Where is the concept of a Lie subgroup defined?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "lie_groups",
+        "page": 53,
+        "retrieval_top1_section": "lie_groups",
+        "retrieval_top1_page": 53,
+        "match": true
+      }
+    },
+    {
+      "id": "w19",
+      "bucket": "where_stated",
+      "question": "Which section covers convolutional neural networks?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "convolutional_neural_networks",
+        "page": 30,
+        "retrieval_top1_section": "convolutional_neural_networks",
+        "retrieval_top1_page": 30,
+        "match": true
+      }
+    },
+    {
+      "id": "w20",
+      "bucket": "where_stated",
+      "question": "Where does the paper introduce backpropagation?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "automatic_differentiation_backpropagation",
+        "page": null,
+        "retrieval_top1_section": "introduction",
+        "retrieval_top1_page": 5,
+        "match": false
+      }
+    },
+    {
+      "id": "w21",
+      "bucket": "where_stated",
+      "question": "Where is stochastic gradient descent first defined?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "stochastic_gradient_descent",
+        "page": 17,
+        "retrieval_top1_section": "stochastic_gradient_descent",
+        "retrieval_top1_page": 17,
+        "match": true
+      }
+    },
+    {
+      "id": "w22",
+      "bucket": "where_stated",
+      "question": "Which section motivates the importance of weight initialization?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "initialization",
+        "page": null,
+        "retrieval_top1_section": "deep_neural_networks",
+        "retrieval_top1_page": 25,
+        "match": false
+      }
+    },
+    {
+      "id": "w23",
+      "bucket": "where_stated",
+      "question": "Where are tropical operators introduced?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "tropical_operators",
+        "page": 75,
+        "retrieval_top1_section": "tropical_operators",
+        "retrieval_top1_page": 75,
+        "match": true
+      }
+    },
+    {
+      "id": "w24",
+      "bucket": "where_stated",
+      "question": "Where does the paper define manifolds?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "manifolds",
+        "page": 49,
+        "retrieval_top1_section": "manifolds",
+        "retrieval_top1_page": 49,
+        "match": true
+      }
+    },
+    {
+      "id": "w25",
+      "bucket": "where_stated",
+      "question": "Which section builds the rotation-translation equivariant CNN?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "building_a_rotation_translation_equivariant_cnn",
+        "page": 68,
+        "retrieval_top1_section": "building_a_rotation_translation_equivariant_cnn",
+        "retrieval_top1_page": 68,
+        "match": true
+      }
+    },
+    {
+      "id": "s26",
+      "bucket": "section_summary",
+      "question": "Summarize the section on supervised learning.",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "supervised_learning"
+      }
+    },
+    {
+      "id": "s27",
+      "bucket": "section_summary",
+      "question": "Summarize the section on stochastic gradient descent.",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "stochastic_gradient_descent"
+      }
+    },
+    {
+      "id": "s28",
+      "bucket": "section_summary",
+      "question": "Summarize the section on initialization.",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "initialization"
+      }
+    },
+    {
+      "id": "s29",
+      "bucket": "section_summary",
+      "question": "Summarize the section on convolutional neural networks.",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "convolutional_neural_networks"
+      }
+    },
+    {
+      "id": "s30",
+      "bucket": "section_summary",
+      "question": "Summarize the section on automatic differentiation and backpropagation.",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "automatic_differentiation_backpropagation"
+      }
+    },
+    {
+      "id": "s31",
+      "bucket": "section_summary",
+      "question": "Summarize the section on adaptive learning rate algorithms.",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "adaptive_learning_rate_algorithms"
+      }
+    },
+    {
+      "id": "s32",
+      "bucket": "section_summary",
+      "question": "Summarize the section on Lie groups.",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "lie_groups"
+      }
+    },
+    {
+      "id": "s33",
+      "bucket": "section_summary",
+      "question": "Summarize the section on tropical operators.",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "tropical_operators"
+      }
+    },
+    {
+      "id": "c34",
+      "bucket": "compare",
+      "question": "Compare the method sections of Paper A and Paper B.",
+      "paper_pair": [
+        "2005-11401-rag-36118b6fc7",
+        "2112-04426-retro-1d8844ff7b"
+      ],
+      "ground_truth": {
+        "section": "method"
+      },
+      "needs_two_papers": true
+    },
+    {
+      "id": "c35",
+      "bucket": "compare",
+      "question": "Compare the experimental results of Paper A and Paper B.",
+      "paper_pair": [
+        "2005-11401-rag-36118b6fc7",
+        "2208-03299-atlas-e29ac64b1f"
+      ],
+      "ground_truth": {
+        "section": "results"
+      },
+      "needs_two_papers": true
+    },
+    {
+      "id": "c36",
+      "bucket": "compare",
+      "question": "Compare the limitations discussed in Paper A and Paper B.",
+      "paper_pair": [
+        "2005-11401-rag-36118b6fc7",
+        "2310-11511-self-rag-83f91a8717"
+      ],
+      "ground_truth": {
+        "section": "limitations"
+      },
+      "needs_two_papers": true
+    },
+    {
+      "id": "c37",
+      "bucket": "compare",
+      "question": "What datasets are used in Paper A vs Paper B?",
+      "paper_pair": [
+        "2005-11401-rag-36118b6fc7",
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "experiments"
+      },
+      "needs_two_papers": true
+    },
+    {
+      "id": "c38",
+      "bucket": "compare",
+      "question": "Compare the proposed loss functions in Paper A and Paper B.",
+      "paper_pair": [
+        "2112-04426-retro-1d8844ff7b",
+        "2208-03299-atlas-e29ac64b1f"
+      ],
+      "ground_truth": {
+        "section": "method"
+      },
+      "needs_two_papers": true
+    },
+    {
+      "id": "c39",
+      "bucket": "compare",
+      "question": "Compare the evaluation metrics in Paper A and Paper B.",
+      "paper_pair": [
+        "2112-04426-retro-1d8844ff7b",
+        "2310-11511-self-rag-83f91a8717"
+      ],
+      "ground_truth": {
+        "section": "results"
+      },
+      "needs_two_papers": true
+    },
+    {
+      "id": "c40",
+      "bucket": "compare",
+      "question": "Compare the architectural choices in Paper A and Paper B.",
+      "paper_pair": [
+        "2112-04426-retro-1d8844ff7b",
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "ground_truth": {
+        "section": "method"
+      },
+      "needs_two_papers": true
+    },
+    {
+      "id": "a41",
+      "bucket": "ambiguous",
+      "question": "What is the best learning rate?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "expected_behavior": "clarify"
+    },
+    {
+      "id": "a42",
+      "bucket": "ambiguous",
+      "question": "How do I tune the network?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "expected_behavior": "clarify"
+    },
+    {
+      "id": "a43",
+      "bucket": "ambiguous",
+      "question": "Which is better, this or the other one?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "expected_behavior": "clarify"
+    },
+    {
+      "id": "a44",
+      "bucket": "ambiguous",
+      "question": "What about regularization?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "expected_behavior": "clarify"
+    },
+    {
+      "id": "a45",
+      "bucket": "ambiguous",
+      "question": "Is bigger better?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "expected_behavior": "clarify"
+    },
+    {
+      "id": "o46",
+      "bucket": "out_of_scope",
+      "question": "What was the closing price of NVIDIA stock yesterday?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "expected_behavior": "refuse"
+    },
+    {
+      "id": "o47",
+      "bucket": "out_of_scope",
+      "question": "Who won the 2024 FIFA World Cup?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "expected_behavior": "refuse"
+    },
+    {
+      "id": "o48",
+      "bucket": "out_of_scope",
+      "question": "What is the recipe for Vietnamese pho?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "expected_behavior": "refuse"
+    },
+    {
+      "id": "o49",
+      "bucket": "out_of_scope",
+      "question": "When is the next SpaceX Starship launch?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "expected_behavior": "refuse"
+    },
+    {
+      "id": "o50",
+      "bucket": "out_of_scope",
+      "question": "What is the capital of Mongolia?",
+      "paper_filter": [
+        "2403-04807-math-neural-networks-f32d05a721"
+      ],
+      "expected_behavior": "refuse"
+    }
+  ]
+}

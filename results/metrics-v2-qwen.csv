@@ -1,0 +1,2 @@
+total_questions,skipped,citation_coverage_pct,retrieval_top1_hit_pct,retrieval_topk_hit_pct,correctly_refused_pct,mean_latency_ms,p95_latency_ms,mean_token_usage_est
+50,0,90.0,88.0,100.0,80.0,3677.95,9757.18,526.6

@@ -1,0 +1,7 @@
+bucket,count,skipped,citation_coverage_pct,refused_pct,mean_latency_ms
+factual,15,0,100.0,0.0,3506.2
+where_stated,10,0,100.0,0.0,1459.01
+section_summary,8,0,75.0,0.0,4319.85
+compare,7,0,100.0,0.0,8406.24
+ambiguous,5,0,100.0,0.0,4676.15
+out_of_scope,5,0,0.0,100.0,10.26

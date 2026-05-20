@@ -1,0 +1,177 @@
+{
+  "query": "What is Xavier initialization?",
+  "latency_ms": 17615.759,
+  "summary": {
+    "paper_count": 1,
+    "chunk_count": 1997,
+    "papers": [
+      {
+        "paper_id": "2403-04807-a492d1dd96",
+        "title": "Mathematics of Neural Networks",
+        "page_count": 80,
+        "section_count": 21,
+        "sections": [
+          "unknown",
+          "introduction",
+          "introduction",
+          "supervised_learning",
+          "artificial_neurons_activation_functions",
+          "shallow_networks",
+          "stochastic_gradient_descent",
+          "training",
+          "deep_neural_networks",
+          "initialization",
+          "convolutional_neural_networks",
+          "automatic_differentiation_backpropagation",
+          "adaptive_learning_rate_algorithms",
+          "manifolds",
+          "lie_groups",
+          "linear_operators",
+          "building_a_rotation_translation_equivariant_cnn",
+          "tropical_operators",
+          "references",
+          "references"
+        ],
+        "source_path": "/home/lenovo/projects/hologram/assignment/corpus/2403.04807.pdf"
+      }
+    ]
+  },
+  "answer": "- Of course in reality we never use the linear activation function. The original Xavier initialization scheme has been expanded to [2403-04807-a492d1dd96 p.29 section=initialization chunk=2403-04807-a492d1dd96:c00748]\n- Glorot and for that reason the scheme we will be seeing is commonly referred to as Glorot or Xavier initialization [2403-04807-a492d1dd96 p.28 section=initialization chunk=2403-04807-a492d1dd96:c00701]",
+  "retrieved": [
+    {
+      "rank": 1,
+      "score": 0.491853,
+      "chunk": {
+        "chunk_id": "2403-04807-a492d1dd96:c00748",
+        "paper_id": "2403-04807-a492d1dd96",
+        "source_path": "/home/lenovo/projects/hologram/assignment/corpus/2403.04807.pdf",
+        "section": "initialization",
+        "section_heading": "2.2 Initialization",
+        "page_start": 29,
+        "page_end": 29,
+        "chunk_index": 748,
+        "char_offset_start": 57841,
+        "char_offset_end": 58069,
+        "text": "Of course in reality we never use the linear activation function. The original Xavier initialization scheme has been expanded to include specific activation functions. For example for the ReLU by He et al. (2015), they arrive at"
+      },
+      "citation": {
+        "paper_id": "2403-04807-a492d1dd96",
+        "section": "initialization",
+        "page_start": 29,
+        "page_end": 29,
+        "chunk_id": "2403-04807-a492d1dd96:c00748",
+        "quote_snippet": "Of course in reality we never use the linear activation function. The original Xavier initialization scheme has been expanded to",
+        "char_offset_start": 57841,
+        "char_offset_end": 58069
+      }
+    },
+    {
+      "rank": 2,
+      "score": 0.434329,
+      "chunk": {
+        "chunk_id": "2403-04807-a492d1dd96:c00701",
+        "paper_id": "2403-04807-a492d1dd96",
+        "source_path": "/home/lenovo/projects/hologram/assignment/corpus/2403.04807.pdf",
+        "section": "initialization",
+        "section_heading": "2.2 Initialization",
+        "page_start": 28,
+        "page_end": 28,
+        "chunk_index": 701,
+        "char_offset_start": 55413,
+        "char_offset_end": 55952,
+        "text": "The initialization schemes from the previous section focused on controlling the variance of the signals going forward through the network. While this does help in controlling the vanish- ing/exploding gradient problem we can also look at gradients directly as they backpropagate through the network, this is the approach taken by Glorot and Bengio (2010). The first author\u2019s name is Xavier Glorot and for that reason the scheme we will be seeing is commonly referred to as Glorot or Xavier initialization (as it is in PyTorch for example)."
+      },
+      "citation": {
+        "paper_id": "2403-04807-a492d1dd96",
+        "section": "initialization",
+        "page_start": 28,
+        "page_end": 28,
+        "chunk_id": "2403-04807-a492d1dd96:c00701",
+        "quote_snippet": "Glorot and for that reason the scheme we will be seeing is commonly referred to as Glorot or Xavier initialization",
+        "char_offset_start": 55413,
+        "char_offset_end": 55952
+      }
+    },
+    {
+      "rank": 3,
+      "score": 0.426542,
+      "chunk": {
+        "chunk_id": "2403-04807-a492d1dd96:c00754",
+        "paper_id": "2403-04807-a492d1dd96",
+        "source_path": "/home/lenovo/projects/hologram/assignment/corpus/2403.04807.pdf",
+        "section": "initialization",
+        "section_heading": "2.2 Initialization",
+        "page_start": 29,
+        "page_end": 29,
+        "chunk_index": 754,
+        "char_offset_start": 58491,
+        "char_offset_end": 58631,
+        "text": "Remark 2.8. See torch.nn.init.xavier_uniform_ and torch.nn.init.xavier_normal_ for PyTorch\u2019s implementation of these initialization schemes."
+      },
+      "citation": {
+        "paper_id": "2403-04807-a492d1dd96",
+        "section": "initialization",
+        "page_start": 29,
+        "page_end": 29,
+        "chunk_id": "2403-04807-a492d1dd96:c00754",
+        "quote_snippet": "Remark 2.8. See torch.nn.init.xavier_uniform_ and torch.nn.init.xavier_normal_ for PyTorch\u2019s implementation of these initialization schemes.",
+        "char_offset_start": 58491,
+        "char_offset_end": 58631
+      }
+    },
+    {
+      "rank": 4,
+      "score": 0.316859,
+      "chunk": {
+        "chunk_id": "2403-04807-a492d1dd96:c00997",
+        "paper_id": "2403-04807-a492d1dd96",
+        "source_path": "/home/lenovo/projects/hologram/assignment/corpus/2403.04807.pdf",
+        "section": "automatic_differentiation_backpropagation",
+        "section_heading": "2.4 Automatic Differentiation & Backpropagation",
+        "page_start": 39,
+        "page_end": 39,
+        "chunk_index": 997,
+        "char_offset_start": 81460,
+        "char_offset_end": 81577,
+        "text": "\u2022 Everything that we wrote down is a numeric computation and the whole schematic can be executed by a computer as is."
+      },
+      "citation": {
+        "paper_id": "2403-04807-a492d1dd96",
+        "section": "automatic_differentiation_backpropagation",
+        "page_start": 39,
+        "page_end": 39,
+        "chunk_id": "2403-04807-a492d1dd96:c00997",
+        "quote_snippet": "\u2022 Everything that we wrote down is a numeric computation and the whole schematic can be executed by a computer",
+        "char_offset_start": 81460,
+        "char_offset_end": 81577
+      }
+    },
+    {
+      "rank": 5,
+      "score": 0.309048,
+      "chunk": {
+        "chunk_id": "2403-04807-a492d1dd96:c00594",
+        "paper_id": "2403-04807-a492d1dd96",
+        "source_path": "/home/lenovo/projects/hologram/assignment/corpus/2403.04807.pdf",
+        "section": "initialization",
+        "section_heading": "2.2 Initialization",
+        "page_start": 25,
+        "page_end": 25,
+        "chunk_index": 594,
+        "char_offset_start": 49828,
+        "char_offset_end": 50299,
+        "text": "Remark 2.4 (On the importance of good initialization). A good initialization scheme allows the network to reach a higher performance level in less time. This can have important consequences for large production networks. One such network is GPT-3 (see Brown et al. 2020), which is used for natural language processing, it has 175 billion parameters and training it has reportedly cost 4 million $. Hence better initialization schemes can be of substantial economic value."
+      },
+      "citation": {
+        "paper_id": "2403-04807-a492d1dd96",
+        "section": "initialization",
+        "page_start": 25,
+        "page_end": 25,
+        "chunk_id": "2403-04807-a492d1dd96:c00594",
+        "quote_snippet": "Remark 2.4 (On the importance of good initialization). A good initialization scheme allows the network to reach a higher performance",
+        "char_offset_start": 49828,
+        "char_offset_end": 50299
+      }
+    }
+  ]
+}
